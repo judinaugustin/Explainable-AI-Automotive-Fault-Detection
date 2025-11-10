@@ -22,23 +22,28 @@ The pipeline uses **unsupervised machine learning (Isolation Forest)** to detect
 
 ## ⚙️ System Architecture
 
-┌───────────────────────────────┐
-│ Synthetic SBW Sensor Dataset │
-│ torque_demand, torque_actual, │
-│ actuator_pos, clutch_pressure │
-└──────────────┬────────────────┘
-│
-Feature Engineering (KPIs)
-│
-┌──────────────▼───────────────┐
-│ Isolation Forest Model │ ← Fault Detection
-└──────────────┬───────────────┘
-│
-Explainability (SHAP & LIME)
-│
-┌──────────────▼───────────────┐
-│ Visualization & Insights │
-└──────────────────────────────┘
++---------------------------------------------------+
+|          Synthetic Shift-by-Wire Dataset          |
+|  torque_demand, torque_actual, actuator_pos, etc. |
++-----------------------------+---------------------+
+                              |
+                              v
+                  Feature Engineering (KPIs)
+     ------------------------------------------------
+     |  torque_error_rm, torque_rate_rm, pressure_rate, actuator_pos  |
+     ------------------------------------------------
+                              |
+                              v
+                 Unsupervised Fault Detection
+                    [ Isolation Forest Model ]
+                              |
+                              v
+                   Explainability Components
+                     [ SHAP + LIME Analysis ]
+                              |
+                              v
+                     Visualization & Insights
+        (Torque-Time plots, SHAP summary, LIME table, etc.)
 
 
 ---
