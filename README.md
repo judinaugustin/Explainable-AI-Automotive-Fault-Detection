@@ -84,6 +84,7 @@ These features represent the **core KPIs** that define SBW health.
 from sklearn.ensemble import IsolationForest
 model = IsolationForest(contamination=0.05, random_state=42)
 df['fault_flag'] = model.fit_predict(X_scaled)
+```
 
 📊 Visualization
 
